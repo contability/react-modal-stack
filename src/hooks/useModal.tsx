@@ -1,26 +1,34 @@
 import { ReactNode } from 'react';
+import { ModalContentsProps, modalStore } from '../stores/modal';
 
 const useModal = () => {
-  /**
-   * 1. 모달 스토어 만들고 모달 state import
-   * 2. 모달 스토어 내 setModalState import
-   */
+  const modal = modalStore(state => state);
 
   /**
    * modal stack에 push
    * @param contents {Array<모달 인터페이스>}
    */
-  const modalPush = ({ contents }: any) => {};
+  const modalPush = (contents: ModalContentsProps) => {
+    modal.setModalState([...modal.modalState, contents]);
+  };
 
   /**
    * modal stack의 마지막 모달을 제거
    */
-  const modalPop = () => {};
+  const modalPop = () => {
+    const state = modal.modalState;
+    state.pop();
+    if (state.length > 0) {
+      modal.setModalState(state);
+    }
+  };
 
   /**
    * modal 전체 제거
    */
-  const modalClear = () => {};
+  const modalClear = () => {
+    modal.resetModalState();
+  };
 
   /**
    *
