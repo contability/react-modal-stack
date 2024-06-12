@@ -3,8 +3,8 @@ import styled from 'styled-components';
 const ButtonWrapper = styled.button`
   padding: 8px 16px;
   border-radius: 8px;
-  background-color: gray;
-  color: white;
+  background-color: #000000;
+  color: #ffffff;
 `;
 
 interface ButtonProps {

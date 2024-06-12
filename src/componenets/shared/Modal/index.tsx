@@ -34,10 +34,13 @@ interface ModalContainerProps {
   isDisalbedBackdropClick?: boolean;
   /**
    * 배경 색상 투명 여부
-   * true: 투명
-   * false: 불투명
+   * - true: 투명
+   * - false: 불투명
    */
   isBackdropTransparent?: boolean;
+  /**
+   * 하위 엘리먼트
+   */
   children?: ReactNode;
 }
 
