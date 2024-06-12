@@ -38,8 +38,6 @@ const useModal = () => {
    */
   const Modal = () => {
     const portalElement = document.querySelector('#modal-portal') as HTMLElement;
-    // 1. modalBackdrop
-    // 2. modal store의 state를 반복문으로 모달 창 노출
     return (
       modal.modalState.length > 0 &&
       createPortal(
