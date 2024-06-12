@@ -1,5 +1,7 @@
 import { ReactNode } from 'react';
 import { ModalContentsProps, modalStore } from '../stores/modal';
+import { createPortal } from 'react-dom';
+import ModalContainer from '../componenets/shared/Modal';
 
 const useModal = () => {
   const modal = modalStore(state => state);
@@ -17,10 +19,10 @@ const useModal = () => {
    */
   const modalPop = () => {
     const state = modal.modalState;
-    state.pop();
     if (state.length > 0) {
-      modal.setModalState(state);
+      state.pop();
     }
+    modal.setModalState(state);
   };
 
   /**
@@ -35,9 +37,20 @@ const useModal = () => {
    * @returns 모달 컴포넌트
    */
   const Modal = () => {
+    const portalElement = document.querySelector('#modal-portal') as HTMLElement;
     // 1. modalBackdrop
     // 2. modal store의 state를 반복문으로 모달 창 노출
-    return <></>;
+    return (
+      modal.modalState.length > 0 &&
+      createPortal(
+        <>
+          {modal.modalState.map((modalState, index) => (
+            <div key={`modal-${index}`}>{modalState.component}</div>
+          ))}
+        </>,
+        portalElement,
+      )
+    );
   };
 
   return {

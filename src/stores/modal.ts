@@ -16,9 +16,6 @@ interface IModalStore {
 export interface ModalContentsProps {
   key: string;
   component: ReactNode;
-  componentProps?: any;
-  isDisalbedBackdropClick?: boolean;
-  isBackdropTransparent?: boolean;
 }
 
 export const modalStore = create<IModalStore>()(
