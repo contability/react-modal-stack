@@ -1,15 +1,11 @@
-/**
- * 1. modalState: modal stack
- * 2. setModalstate: set modal stack state
- */
-
 import { ReactNode } from 'react';
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 
 interface IModalStore {
   modalState: Array<ModalContentsProps>;
-  setModalState: (modalContents: Array<ModalContentsProps>) => void;
+  setModalState: (modalContents: ModalContentsProps) => void;
+  popModalState: () => void;
   resetModalState: () => void;
 }
 
@@ -21,8 +17,18 @@ export interface ModalContentsProps {
 export const modalStore = create<IModalStore>()(
   devtools(set => ({
     modalState: [],
-    setModalState: (modalContents: Array<ModalContentsProps>) => {
-      return set({ modalState: modalContents });
+    setModalState: (modalContents: ModalContentsProps) =>
+      set(state => ({
+        modalState: [...state.modalState, modalContents],
+      })),
+    popModalState: () => {
+      return set(state => {
+        const popState = state.modalState;
+        if (popState.length > 0) popState.pop();
+        return {
+          modalState: [...popState],
+        };
+      });
     },
     resetModalState: () => set({ modalState: [] }),
   })),

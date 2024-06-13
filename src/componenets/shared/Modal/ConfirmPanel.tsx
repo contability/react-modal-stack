@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import useModal from '../../hooks/useModal';
 import { ReactNode } from 'react';
-import Button from '../../componenets/shared/Button';
+import Button from '../Button';
+import useModal from '../../../hooks/useModal';
 
-const AlertPanelWrapper = styled.div`
+const ConfirmPanelWrapper = styled.div`
   padding: 1.6rem 3.2rem;
   background-color: #ffffff;
   border-radius: 16px;
@@ -28,26 +28,31 @@ const AlertPanelWrapper = styled.div`
 
   footer {
     align-self: center;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
   }
 `;
 
-interface AlertPanelProps {
+interface ConfirmPanelProps {
   header?: string;
   contents?: ReactNode;
+  onConfirm?: () => void;
 }
 
-const AlertPanel = ({ header = '', contents = <></> }: AlertPanelProps) => {
+const ConfirmPanel = ({ header = '', contents = <></>, onConfirm }: ConfirmPanelProps) => {
   const { modalPop } = useModal();
 
   return (
-    <AlertPanelWrapper>
+    <ConfirmPanelWrapper>
       <h4>{header}</h4>
       <div className="modal-alert__body">{contents}</div>
       <footer>
         <Button label="Close" onClick={modalPop} />
+        <Button label="Confirm" onClick={onConfirm} />
       </footer>
-    </AlertPanelWrapper>
+    </ConfirmPanelWrapper>
   );
 };
 
-export default AlertPanel;
+export default ConfirmPanel;

@@ -1,28 +1,23 @@
-import { ReactNode } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { ModalContentsProps, modalStore } from '../stores/modal';
 import { createPortal } from 'react-dom';
-import ModalContainer from '../componenets/shared/Modal';
 
 const useModal = () => {
   const modal = modalStore(state => state);
 
   /**
    * modal stack에 push
-   * @param contents {Array<모달 인터페이스>}
+   * @param newModalContents {Array<모달 인터페이스>}
    */
-  const modalPush = (contents: ModalContentsProps) => {
-    modal.setModalState([...modal.modalState, contents]);
+  const modalPush = (newModalContents: ModalContentsProps) => {
+    modal.setModalState(newModalContents);
   };
 
   /**
    * modal stack의 마지막 모달을 제거
    */
   const modalPop = () => {
-    const state = modal.modalState;
-    if (state.length > 0) {
-      state.pop();
-    }
-    modal.setModalState(state);
+    modal.popModalState();
   };
 
   /**

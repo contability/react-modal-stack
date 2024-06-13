@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import RootPage from './componenets/page/Root';
 import { modalStore } from './stores/modal';
 import { useEffect } from 'react';
+import SecondPage from './componenets/page/SecondPage';
 
 function App() {
   const modal = modalStore(state => state);
@@ -15,6 +16,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<RootPage />} />
+          <Route path="/second" element={<SecondPage />} />
         </Routes>
       </BrowserRouter>
     </>

@@ -16,7 +16,7 @@
     "jsx": "preserve",
     "allowImportingTsExtensions": true,
     "paths": {
-      "@Components/*": ["./src/components/*"],
+      "@components/*": ["./src/components/*"],
       "@styles/*": ["./src/styles/*"],
       "@assets/*": ["./src/public/assets/*"]
     },
