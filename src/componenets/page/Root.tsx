@@ -43,7 +43,7 @@ const RootPage = () => {
           header="CONFIRM01"
           contents={
             <>
-              <p>하나 더 열기</p>
+              <p>모달 하나 더 열기</p>
             </>
           }
           onConfirm={() => modalPush(modal_confirm02)}
@@ -64,8 +64,57 @@ const RootPage = () => {
               <Button label="pop" onClick={() => modalPop()}></Button>
             </>
           }
+          onConfirm={() => modalPush(modal_confirm03)}
         />
       </ModalContainer>
+    ),
+  };
+
+  const modal_confirm03 = {
+    key: 'confirm03',
+    component: (
+      <ModalContainer isDisalbedBackdropClick={true}>
+        <ConfirmPanel
+          header="CONFIRM03"
+          contents={
+            <>
+              <p>세번째 confirm</p>
+              <p>confirm 누르면 clear</p>
+            </>
+          }
+          onConfirm={() => modalClear()}
+        />
+      </ModalContainer>
+    ),
+  };
+
+  const modal_form01 = {
+    key: 'form01',
+    component: (
+      <>
+        <ModalContainer>
+          <ConfirmPanel
+            header="FORM01"
+            contents={
+              <>
+                <input type="number" style={{ color: 'black' }} />
+              </>
+            }
+            onConfirm={() => modalPush(modal_confirm01)}
+          />
+        </ModalContainer>
+      </>
+    ),
+  };
+
+  const modal_clear01 = {
+    key: 'clear01',
+    component: (
+      <>
+        <ModalContainer>
+          <ConfirmPanel header="CLEAR01" contents={<></>} onConfirm={() => modalClear()} />
+        </ModalContainer>
+      </>
     ),
   };
   // #endregion
@@ -75,7 +124,7 @@ const RootPage = () => {
       <PageContainer>
         <Button label="ALERT 01" onClick={() => modalPush(modal_alert01)} />
         <Button label="CONFIRM 01" onClick={() => modalPush(modal_confirm01)} />
-
+        <Button label="FORM 01" onClick={() => modalPush(modal_form01)} />
         <Button label="clear" onClick={() => modalClear()}></Button>
       </PageContainer>
       <Modal />

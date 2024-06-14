@@ -1,4 +1,4 @@
-import { ReactNode, useEffect } from 'react';
+import { ReactNode, memo, useEffect } from 'react';
 import styled from 'styled-components';
 import { modalStore } from '../../../stores/modal';
 import useModal from '../../../hooks/useModal';
@@ -62,4 +62,4 @@ const ModalContainer = ({
   );
 };
 
-export default ModalContainer;
+export default memo(ModalContainer);

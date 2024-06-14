@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ReactNode } from 'react';
+import { ReactNode, memo } from 'react';
 import Button from '../Button';
 import useModal from '../../../hooks/useModal';
 
@@ -34,7 +34,7 @@ const ConfirmPanelWrapper = styled.div`
   }
 `;
 
-interface ConfirmPanelProps {
+export interface ConfirmPanelProps {
   header?: string;
   contents?: ReactNode;
   onConfirm?: () => void;
@@ -55,4 +55,4 @@ const ConfirmPanel = ({ header = '', contents = <></>, onConfirm }: ConfirmPanel
   );
 };
 
-export default ConfirmPanel;
+export default memo(ConfirmPanel);
