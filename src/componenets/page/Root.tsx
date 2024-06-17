@@ -4,6 +4,7 @@ import Button from '../shared/Button';
 import ModalContainer from '../shared/Modal';
 import AlertPanel from '../shared/Modal/AlertPanel';
 import ConfirmPanel from '../shared/Modal/ConfirmPanel';
+import Input from '../shared/Input';
 
 const PageContainer = styled.main`
   background-color: white;
@@ -96,9 +97,9 @@ const RootPage = () => {
           <ConfirmPanel
             header="FORM01"
             contents={
-              <>
-                <input type="number" style={{ color: 'black' }} />
-              </>
+              <div style={{ width: '100%' }}>
+                <Input type="number" placeholder="input type number" />
+              </div>
             }
             onConfirm={() => modalPush(modal_confirm01)}
           />
